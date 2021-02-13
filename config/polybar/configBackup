@@ -1,0 +1,316 @@
+
+
+; #################### Bar launcher #########################
+
+[bar/launcher]
+width = 1.78%
+height = 32px
+offset-x = 1.2%
+offset-y = 3px
+radius = 16.6
+fixed-center = true
+background =   #1a1a1a
+padding-left = 0
+padding-right = 0
+module-margin-left = 0
+module-margin-right = 0
+font-0 = Material Design Icons Desktop :pixelsize=14:style:Regular;3
+font-1 = Hack:pixelsize=11:style=Bold;3
+modules-left = launcher
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = false
+
+
+; ######################## Bar Center ########################
+
+[bar/center]
+width = 69%
+height = 28px
+offset-x = 15%
+offset-y = 5px
+
+radius-top = 7
+radius-bottom = 7
+fixed-center = true
+;background =   #1f2430
+background =   #00000000
+;foreground = #9ae0bd
+padding-left = 0
+padding-right =2
+module-margin-left = 0
+module-margin-right = 1
+font-0 = Material Design Icons Desktop:pixelsize=17:style:Regular;4
+font-1 = Hack:pixelsize=11:style=Regular;3
+;border-size = 2
+;border-color = #dfdfdf
+modules-left = i3 
+modules-center = xwindow
+modules-right = nextt
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = false
+
+
+; ######################## Bar datee ########################
+
+[bar/datee]
+width = 15%
+height = 25px
+offset-x = 83.8%
+offset-y = 7px
+radius = 7
+fixed-center = true
+background = #1f2430
+;foreground = #9ae0bd
+padding-left = 42
+padding-right = 6
+module-margin-left = 0
+module-margin-right = 0
+font-0 = Material Design Icons Desktop:pixelsize=15:style:Bold;4
+font-1 = Nasalization :pixelsize=10:style=Regular;2
+;border-size = 0
+;border-color = #bf4040
+modules-left = date
+modules-right =mtu
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = false
+tray-position = left
+tray-detached = true
+tray-maxsize =30
+tray-background =  #1f2430
+tray-offset-x = 1.5%
+
+; ######################## Bar masked ########################
+
+;[bar/masked]
+;width = 17%
+;height = 26px
+;offset-x = 82%
+;offset-y = 15px
+;radius = 10
+;fixed-center = true
+;background =  #141720  
+;padding-left = 0
+;padding-right = 0
+;font-0 = Material Design Icons Desktop:pixelsize=17:style:Bold;5
+;font-1 = Hack:pixelsize=12:style=Bold;4
+;modules-left =  
+;modules-right = mtu
+;wm-restack = i3
+;override-redirect = true
+;cursor-click = pointer
+;cursor-scroll = default
+;bottom = false
+
+; ######################## Bar quicks ########################
+
+[bar/quicks]
+width = 9%
+height = 24px
+offset-x = 3.5%
+offset-y = 7px
+radius = 7
+fixed-center = true
+background =  #1a1a1a
+;foreground = #9ae0bd
+padding-left = 0
+padding-right = 0
+module-margin-left = 1
+module-margin-right = 0
+font-0 = Material Design Icons Desktop:pixelsize=16:style:Regular;3
+font-1 = Hack:pixelsize=11:style=Bold;3
+;border-size = 0
+;border-color = #bf4040
+modules-center = ffox tthuc sspot tthu ccam cclip
+wm-restack = i3
+override-redirect = true
+cursor-click = pointer
+cursor-scroll = default
+bottom = false
+
+
+;#################### Modules ####################
+
+[module/i3]
+
+type = internal/i3
+enable-click = true
+enable-scroll = false
+ws-icon-0 = "1;1󰆍"
+ws-icon-1 = "2;2󰈹"
+ws-icon-2 = "3;3󰉏"
+ws-icon-3 = "4;4󰨞"
+ws-icon-4 = "5;5󰂓"
+ws-icon-5 = "6;6󰑉"
+ws-icon-6 = "7;7󰋌"
+ws-icon-7 = "8;8󰏗"
+ws-icon-8 = "9;9󰦫"
+format = <label-state>
+
+label-focused = %icon%
+label-focused-foreground = #ff944d
+label-focused-background = #00000000
+label-focused-padding = 1
+label-focused-underline = #fba922
+
+label-unfocused = ${self.label-focused}
+label-unfocused-foreground =  #75a3a3
+label-unfocused-padding = 1
+
+label-visible = ${self.label-focused}
+label-visible-background = #030b11
+label-visible-padding = 1
+
+label-urgent = ${self.label-focused}
+label-urgent-foreground = #ed404c
+label-urgent-padding = 1
+
+
+[module/date]
+
+type = custom/script
+exec =  ~/.config/polybar/scripts/date.sh
+interval = 50
+;tail = true
+label-background =   #1f2430
+label-foreground =  #b3b3b3
+click-left = gsimplecal
+
+
+[module/mtu]
+
+type = custom/script
+exec = echo "󰐥"
+format-foreground =  #ff661a
+click-left = bash  ~/.config/rofi/rofiapps/rofishutdown/shutdown.sh &
+format-background = #1f2430
+
+
+;[module/volume]
+
+;type = internal/alsa
+;format = <label>
+;label-volume = "󰎆 %{T2}%percentage%%{T-} "
+;label-volume-foreground =  #7575a3
+;label-muted = "󱄡  "
+;label-muted-foreground =  #7575a3
+;poll-interval = 10
+;sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+;use-ui-max = false
+;interval = 5
+
+
+[module/launcher]
+
+
+type = custom/text
+content = " 󰋵 "
+content-foreground =  #57c7ff
+click-left =  rofi -theme ~/.config/rofi/rofiapps/launcher/applauncher.rasi -show drun -eh 2   &
+interval = 50
+
+
+[module/sep]
+content = " ❯ "
+type = custom/text
+content-foreground = #030b11
+margin = 0
+
+
+[module/ccam]
+type = custom/text
+content = "󰄄"
+#content-foreground = #ffa64d
+click-left =  exec  scrot -e 'feh $f -x' -d 2 &
+
+content-foreground =  #b3b3b3
+
+[module/ffox]
+type = custom/text
+content = "󰈹"
+content-foreground = #bf4040
+click-left =  exec firefox & notify-send -i ~/.icons/Reversal-blue/apps/scalable/org.mozilla.Firefox.svg " " "  FIREFOX UP " &
+
+
+#[module/tthuc]
+#type = custom/text
+#content = "󱁿"
+#content-foreground =#7575a3
+#click-left =  exec thunar .config &
+
+
+[module/tthu]
+type = custom/text
+content = "󱑤"
+content-foreground = #00bfff
+click-left =  exec thunar Downloads &  
+
+
+
+[module/sspot]
+type = custom/text
+content = "󰓇"
+content-foreground = #00b386
+click-left =  exec spotify & notify-send -i ~/.icons/Reversal-blue/apps/scalable/spotify-client.svg " " "  SPOTIFYID " &
+
+
+[module/cclip]
+type = custom/text
+content = "󰏢"
+content-foreground = #008080
+click-left =  exec xfce4-clipman-history & notify-send -i ~/.icons/Reversal-blue/apps/scalable/leafpad.svg " " "CLIPBOARD " &
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 40
+label-foreground = #dfdfdf
+
+
+#[module/prevv]
+#type = custom/text
+#content = "󰄽"
+#content-foreground =#7575a3
+#click-left = exec playerctl --player=spotify previous &
+
+
+[module/nextt]
+type = custom/text
+content = "󰎟"
+content-foreground =  #75a3a3
+click-left =  exec  rofi -show window -mode window -show-icons  -theme ~/.config/rofi/rofiapps/rofiwindowswitcher/switcher.rasi &
+
+
+#[module/plypause]
+#type = custom/text
+#content = "󰽴"
+#content-foreground =  #b3b3cc
+#click-left =  exec playerctl --player=spotify play-pause &
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

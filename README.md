@@ -1,6 +1,6 @@
 #Dotfiles
 
-[!Screenshot](https://github.com/axtloss/dotfiles/blob/main/Screenshot.png?raw=true)
+[![Screenshot]Screenshot(https://github.com/axtloss/dotfiles/blob/main/Screenshot.png?raw=true)]
 
 Note that the i3 config might be out of date/broken, since I'm not using i3 anymore
 

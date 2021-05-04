@@ -1,0 +1,112 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["custom/launcher", "sway/window"],
+    "modules-center": ["custom/spotify", "custom/cava"],
+    "modules-right": ["clock", "custom/space", "idle_inhibitor", "cpu", "custom/ping", "network", "pulseaudio", "battery", "custom/powermenu"],
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50
+    },
+    "custom/ping": {
+        "exec": "$HOME/scripts/ping.sh",
+        "interval": 3,
+        "tooltip": false,
+        "format": "{} ms 龍"
+    },
+    "custom/space": {
+	"format": "   "
+    },
+    "custom/cava": {
+	"exec": "ava -p $HOME/scripts/cava_raw_config",
+	"tooltip": false,
+	"format": " {} "
+    },
+    "custom/spotify": {
+	"exec": "$HOME/scripts/get_spotify_status.sh",
+	"interval": 3,
+	"tooltip": false,
+	"format": " {}"
+    },
+    "custom/spotify-prev": {
+	"on_click": "playerctl previous spotify",
+	"format": "",
+	"tooltip": false
+    },
+    "custom/spotify-play-pause": {
+	"on_click": "playerctl play-pause spotify",
+	"tooltip": false,
+	"format": "  "
+    },
+    "custom/spotify-next": {
+	"on_click": "playerctl next spotify",
+	"tooltip": false,
+	"format": ""
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "interval": "1",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 5,
+        "icon-size": 14,
+        "tooltip": false
+    },
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity}% ",
+        "format-charging": "{capacity}% ",
+        "tooltip": false,
+	    "on-click": "footclient htop"
+    },
+    "custom/powermenu": {
+        "on-click": "~/scripts/powermenu.sh",
+        "format": "⏻",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%a, %d %b %H:%M}",
+        "tooltip": false,
+	    "on-click": "footclient calcurse"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [""]
+        },
+        "tooltip": false,
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "{signalStrength}% ",
+        "format-ethernet": "Wired ",
+        "format-disconnected": " ⚠",
+        "tooltip": false,
+	    "on-click": "footclient nmtui"
+    },
+    "custom/launcher": {
+        "on-click": "~/scripts/launcher.sh",
+        "format": "異 Launcher"
+    }
+}

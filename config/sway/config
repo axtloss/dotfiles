@@ -1,0 +1,289 @@
+set $mod Mod4
+default_border pixel 2
+
+exec $HOME/scripts/setBackground.sh
+#output "*" bg $HOME/wallpapers/useThis fill
+
+include "$HOME/.cache/wal/colors-sway"
+
+input * xkb_layout "de" 
+
+# autostart, setting up the resolution first (forced to 1920x1080 and then setting the wallpaper)
+# exec bash ~/.config/i3/resolution.sh
+# exec --no-startup-id exec bash $HOME.config/i3/wllp.sh
+# exec --no-startup-id nitrogen --restore
+# exec ~/.config/i3/resolution.sh
+exec --no-startup-id picom --backend glx --vsync --config ~/.config/picom.conf
+exec --no-startup-id exec mako
+exec teams
+exec --no-startup-id whatsapp-nativefier-dark
+exec setBackground
+exec --no-startup-id signal-desktop
+exec --no-startup-id /var/lib/snapd/snap/bin/signal-desktop
+exec --no-startup-id blueman-applet
+exec --no-startup-id xdotool key Num_Lock
+exec --no-startup-id betterlockscreen -u $HOME/wallpapers/useThis -b
+exec --no-startup-id python3 $HOME/scripts/checkWindowlauncher.py
+exec --no-startup-id conky --config $HOME/.config/conky/conkyInfo.conf
+exec --no-startup-id conky --config $HOME/.config/conky/conky.conf
+exec --no-startup-id conky --config $HOME/.config/conky/conkyWeather.conf
+exec cbatticon
+exec volumeicon
+exec lxsession
+exec --no-startup-id setxkbmap -layout de
+#exec /usr/bin/emacs --daemon
+#exec --no-startup-id killall plasmashell
+# exec --no-startup-id exec xset -dpms s off
+
+exec swayilde -w \
+	timeout 300 'swaylock -f -c 000000' \
+	timeout 600 'swaymsg "output * dpms off" resume 'swaymsg "output * dpms on"" \
+	before-sleep 'swaylock -f -i $HOME/wallpapers/useThis'
+
+# font
+#font pango:JetBrains Mono 10
+#font pango: Noto Sans 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# lock screen and suspend
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager
+exec --no-startup-id nm-applet
+
+#easy numpad on/off
+bindcode $mod+61 exec xdotool key Num_Lock
+
+# Background
+#exec --no-startup-id feh --bg-tile ~/wallpaper.png
+# exec dwall -s lakeside
+
+# Screenshot
+bindsym Print exec spectacle
+
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+# Use pactl to adjust volume in PulseAudio <bindings>
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-volume 0i -100%
+
+# drag floating windows
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Media keys
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# start dmenu or rofi
+#bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn gohufont-15"
+bindsym $mod+d exec ~/scripts/launcher.sh
+bindsym $mod+c exec rofi -show run
+#bindsym $mod+n exec ~/.config/rofi/applets/menu/network.sh
+#################################################################
+# default bindings on focus and windows
+#################################################################
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ntilde focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split horizontal
+
+# split in vertical orientation
+bindsym $mod+v split vertical
+
+# split toggle
+bindsym $mod+t split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space  floating toggle
+
+# Scratchpad
+bindsym $mod+y scratchpad show
+bindsym $mod+Shift+y floating enable, move position center, move scratchpad
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r exec swaymsg reload 
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec swaymsg exit
+
+#bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
+
+## resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ntilde resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# set window style border and name
+#for_window [class="^.*"] border pixel 1
+
+for_window [app_id="zenity"] floating enable
+
+# bind light up and down screen control
+bindsym XF86MonBrightnessUp exec $HOME/scripts/brightness.sh -add 0.05
+bindsym XF86MonBrightnessDown exec $HOME/scripts/brightness.sh -rem 0.05
+#bindsym $mod+o exec sh ~/.config/i3/backlight.sh -inc 20
+# bindsym $mod+p exec sh ~/.config/i3/backlight.sh -dec 20
+
+# Base colors
+set $base00 #ffffff
+set $base01 #ffffff
+set $base02 #504945
+set $base03 #665c54
+set $base04 #bdae93
+set $base05 #d5c4a1
+set $base06 #ebdbb2
+set $base07 #fbf1c7
+set $base08 #fb4934
+set $base09 #fe8019
+set $base0A #fabd2f
+set $base0B #b8bb26
+set $base0D #83a598
+set $base0E #d3869b
+# main color
+set $base0F #d3bd92
+
+# gaps and borders colors
+#Property Name          Border  BG      Text    Indicator  Child
+client.focused          $foreground #ffffff $foreground $foreground $foreground
+client.focused_inactive $background #ffffff $background $background $background
+client.unfocused        $background #ffffff $background $background	$background
+client.urgent           $base08 $base08 $base00 $base08    $base0F
+client.placeholder      $color0 $color0 $color0 $color0    $color0
+client.background       $color15
+
+
+input type:touchpad {
+	left_handed disabled
+	tap enabled
+	natural_scroll disabled
+	dwt enabled
+	accel_profile "adaptive"
+	pointer_accel 0
+}
+
+# gaps and borders
+smart_borders on
+smart_gaps on
+#gaps inner 10
+# gaps outer 15
+# border_radius 5
+
+#border_radius 5
+# Set inner/outer gaps
+gaps inner 5
+gaps outer 5
+gaps bottom 5 
+gaps top 5
+
+exec $HOME/.config/sway/autostart.sh
+exec xset -dpms s off

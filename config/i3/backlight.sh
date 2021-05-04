@@ -1,18 +1,23 @@
 #!/bin/bash
 
-set -e
-file="/sys/class/backlight/intel_backlight/brightness"
-current=$(cat "$file")
-new="$current"
+disp="eDP-1-1"
 
 if [ "$1" = "-inc" ]
 then
-	new=$(( current + $2 ))
+	currBright=$(xrandr --verbose | grep BACKLIGHT | awk 'BEGIN { FS=" " }; { print $2 }' | awk 'BEGIN { FS="."}; { print $1}')
+	newBright=$(($currBright + 5))
+	xrandr --output $disp --set BACKLIGHT $newBright
+	
 fi
 
 if [ "$1" = "-dec" ]
 then
-new=$(( current - $2 ))
+	currBright=$(xrandr --verbose | grep BACKLIGHT | awk 'BEGIN { FS=" " }; { print $2 }' | awk 'BEGIN { FS="."} { print $1}')
+	newBright=$(($currBright - 5))
+	xrandr --output $disp --set BACKLIGHT $newBright
+	
 fi
 
-echo "$new" | tee "$file"
+#echo "$new" | tee "$file"
+
+

@@ -1,0 +1,70 @@
+* {
+    font-family: "Iosevka Nerd Font";
+    font-weight: 700;
+    font-size: 14px;
+}
+    
+window#waybar {
+    color: #eceff4;
+    background-color: #2e3440;
+}
+
+#window {
+    color: #eceff4;
+    padding: 2px 2px 2px 6px;
+    margin: 2px;
+}
+
+#custom-powermenu {
+    color: #2e3440;
+    background-color: #bf616a;
+    padding: 2px 10px 2px 5px;
+    border-radius: 12px;
+    margin: 4px 4px 4px 2px;
+}
+
+#custom-launcher {
+    background-color: #81a1c1;
+    color: #2e3440;
+    padding: 2px 6px 2px 8px;
+    border-radius: 12px;
+    margin: 4px 2px 4px 4px;
+}
+
+#battery {
+    color: #2e3440;
+    background-color: #81a1c1;
+    padding: 2px 12px 2px 4px;
+    border-radius: 0 12px 12px 0;
+    margin: 4px 2px 4px 0;
+}
+
+#pulseaudio {
+    color: #2e3440;
+    background-color: #81a1c1;
+    margin: 4px 0;
+    padding: 2px 10px 2px 6px;
+}
+
+#network {
+    color: #2e3440;
+    background-color: #81a1c1;
+    border-radius: 12px 0 0 12px;
+    margin: 4px 0 4px 6px;
+    padding: 2px 12px 2px 8px;
+}
+
+#custom-ping, #cpu {
+    margin: 2px;
+    padding: 2px 6px;
+}
+
+#idle_inhibitor {
+    color: #eceff4;
+    padding: 2px 10px 2px 2px;
+    margin: 2px;
+}
+
+#idle_inhibitor.activated {
+    color: #81a1c1;
+}

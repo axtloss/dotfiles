@@ -1,0 +1,37 @@
+* {
+    font-family: "Iosevka Nerd Font";
+    font-weight: 700;
+    font-size: 16px;
+}
+
+window#waybar {
+    color: #eceff4;
+    background-color: #2e3440;
+}
+
+#workspaces {
+    background-color: #414755;
+    margin: 0 4px 4px 4px;
+    border-radius: 12px;
+}
+
+#workspaces button, #workspaces button.focused, #workspaces button.persistent {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 0px;
+    color: #eceff4 ;
+}
+
+#workspaces button {
+    background-color: transparent;
+    color: #81a1c1;
+}
+
+#workspaces button.focused {
+    color: #2e3440;
+    background-color: #81a1c1;
+}
+
+#workspaces button.persistent {
+    background-color: transparent;
+}
